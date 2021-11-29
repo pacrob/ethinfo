@@ -1,1 +1,36 @@
-transaction detail {{ tx_hash }}
+{% extends "layout.html" %}
+
+{% block content %}
+<h4>transaction detail for {{ tx_hash }}</h4>
+
+<table class="table table-dark table-hover">
+  <tr>
+    <td>Value (wei): </td>
+    <td>{{ tx.value }}</td>
+  </tr>
+  <tr>
+    <td>From: </td>
+    <td><a href="/address/{{ tx.from }}">{{ tx.from }}</a></td>
+  </tr>
+  <tr>
+    <td>To: </td>
+    <td><a href="/address/{{ tx.to }}">{{ tx.to }}</a></td>
+  </tr>
+  <tr>
+    <td>Gas: </td>
+    <td>{{ tx.gas }}</td>
+  </tr>
+  <tr>
+    <td>Gas Price: </td>
+    <td>{{ tx.gasPrice }}</td>
+  </tr>
+  <tr>
+    <td>Block Number: </td>
+    <td>{{ tx.blockNumber }}</td>
+  </tr>
+  <tr>
+    <td>Block Hash: </td>
+    <td>{{ tx.blockHash }}</td>
+  </tr>
+</table>
+{% endblock %}

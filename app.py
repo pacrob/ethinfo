@@ -1,7 +1,6 @@
-# gotta run 'export FLASK_APP=hello? nope, not if it's named app.py
-from flask import Flask, render_template
 import config
 from web3 import Web3
+from flask import Flask, render_template
 
 w3 = Web3(Web3.HTTPProvider(config.INFURA_URL))
 app = Flask(__name__)
@@ -12,7 +11,8 @@ def index():
 
 @app.route("/tx/<tx_hash>")
 def transaction(tx_hash):
-    return render_template("transaction.html", tx_hash=tx_hash)
+    tx = w3.eth.get_transaction(tx_hash)
+    return render_template("transaction.html", tx_hash=tx_hash, tx=tx)
 
 
 @app.route("/address/<address_hash>")
