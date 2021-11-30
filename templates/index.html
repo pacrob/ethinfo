@@ -1,1 +1,17 @@
-index
+{% extends "layout.html" %}
+
+{% block content %}
+Current ETH price: {{ eth_price.last }}
+
+<table class='table'>
+  <tr>
+    <td>
+      {{ latest_blocks }}
+    </td>
+    <td>
+      {{ latest_transactions }}
+    </td>
+  </tr>
+</table>
+
+{% endblock %}
