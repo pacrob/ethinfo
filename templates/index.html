@@ -1,17 +1,50 @@
 {% extends "layout.html" %}
 
 {% block content %}
-Current ETH price: {{ eth_price.last }}
-
-<table class='table'>
-  <tr>
-    <td>
-      {{ latest_blocks }}
-    </td>
-    <td>
-      {{ latest_transactions }}
-    </td>
-  </tr>
-</table>
-
+<div class='card'>
+  <div class='card-body'>
+    <div class='card-title'>
+    Ether Price:
+    </div>
+    <div class='card-text'>
+    ${{ eth_price.last }} USD
+    </div>
+  </div>
+</div>
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+      <div class='card'>
+        <div class='card-body'>
+          Latest Blocks
+        </div>
+      </div>
+      {% for block in latest_blocks %}
+      <div class='card'>
+        <div class='card-body'>
+          <div class='card-title'>
+            {{ block.number}}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class='col'>
+      <div class='card'>
+        <div class='card-body'>
+          Latest Transactions
+        </div>
+      </div>
+      {% for transaction in latest_transactions %}
+      <div class='card'>
+        <div class='card-body'>
+          <div class='card-title'>
+            {{ transaction.value}}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 {% endblock %}
