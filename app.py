@@ -42,6 +42,6 @@ def address(address_hash):
     return render_template("address.html", address_hash=address_hash)
 
 
-@app.route("/block/<block_hash>")
-def block(block_hash):
-    return render_template("block.html", block_hash=block_hash)
+@app.route("/block/<block_num>")
+def block(block_num):
+    return render_template("block.html", block_num=block_num)

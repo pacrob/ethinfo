@@ -16,18 +16,18 @@
     <div class='col'>
       <div class='card'>
         <div class='card-body'>
-          Latest Blocks
-        </div>
-      </div>
-      {% for block in latest_blocks %}
-      <div class='card'>
-        <div class='card-body'>
           <div class='card-title'>
-            {{ block.number}}
+            Latest Blocks
           </div>
         </div>
       </div>
+      <ul class="list-group list-group-flush">
+      {% for block in latest_blocks %}
+      <li class='list-group-item'>
+        <a href="/block/{{ block.number }}">{{ block.number}}</a>
+      </li>
       {% endfor %}
+    </ul>
     </div>
     <div class='col'>
       <div class='card'>
@@ -39,7 +39,12 @@
       <div class='card'>
         <div class='card-body'>
           <div class='card-title'>
-            {{ transaction.value}}
+            <ul>
+              <li>tx_hash: <a href="/transaction/{{ transaction.hash }}">{{ transaction.hash[:15] }}</a></li>
+              <li>from: <a href="/address/{{ transaction.from }}">{{ transaction.from}}</a></li>
+              <li>to: <a href="/address/{{ transaction.to }}">{{ transaction.to}}</a></li>
+              <li>value (wei): {{ transaction.value}}</li>
+            </ul>
           </div>
         </div>
       </div>
