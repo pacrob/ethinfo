@@ -41,18 +41,12 @@ def index():
         transaction = w3.eth.get_transaction(tx)
         latest_transactions.append(transaction)
 
-    current_time = time.time()
-
-    # print(type(block.miner))
-    # minerlist = list(miners.keys())
-    # print(type(minerlist[0]))
-
     return render_template("index.html", 
                             eth_price=eth_price,
                             latest_blocks=latest_blocks,
                             latest_transactions=latest_transactions,
-                            current_time=current_time,
                             miners=miners)
+
 
 @app.route("/tx/<tx_hash>")
 def transaction(tx_hash):
