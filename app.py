@@ -11,6 +11,20 @@ app = Flask(__name__)
 with open('miners.json') as f:
     miners = json.load(f)    
 
+def sec_to_time_qty(secs):
+    s_per_d = 86400
+    s_per_h = 3600
+    s_per_m = 60
+
+    days = secs // s_per_d
+    secs = secs % s_per_d
+    hours = secs // s_per_h
+    secs = secs % s_per_h
+    minutes = secs // s_per_m
+    seconds = round(secs % s_per_m)
+    
+    return days, hours, minutes, seconds
+
 @app.route("/")
 def index():
     binance = ccxt.binance() 
@@ -53,4 +67,16 @@ def address(address_hash):
 
 @app.route("/block/<block_num>")
 def block(block_num):
-    return render_template("block.html", block_num=block_num)
+    block = w3.eth.get_block(int(block_num))
+    current_time = time.time()
+    block_time = int(block.timestamp)
+    block_time_str = time.ctime(block_time)
+    time_diff = current_time - block_time
+    days, hours, minutes, seconds = sec_to_time_qty(time_diff)
+
+    return render_template("block.html", block=block,
+                            days=days,
+                            hours=hours,
+                            minutes=minutes,
+                            seconds=seconds,
+                            block_time_str=block_time_str)

@@ -1,5 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
-block {{ block_num }}
+<h3>Block {{ block.number }}</h3>
+<div class='card'>
+  <div class='card-body'>
+    <div class='card-title'>
+    Block Height: {{ block.number }}
+    </div>
+  </div>
+</div>
+<div class='card'>
+  <div class='card-body'>
+    <div class='card-title'>
+    Timestamp: {{ block_time_str }} ({{ days }} days, {{ hours }} hours, {{ minutes }} minutes, {{ seconds }} seconds ago)
+    </div>
+  </div>
+</div>
+<div class='card'>
+  <div class='card-body'>
+    <div class='card-title'>
+    Transactions Count: {{ block.transactions|length }}
+    </div>
+  </div>
+</div>
+<div class='card'>
+  <div class='card-body'>
+    <div class='card-title'>
+    Difficulty: {{ block.difficulty}}
+    </div>
+  </div>
+</div>
 
 {% endblock %}

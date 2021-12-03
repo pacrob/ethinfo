@@ -21,14 +21,14 @@
           </div>
         </div>
       </div>
-      <ul class="list-group list-group-flush">
+      <ul class='list-group list-group-flush'>
       {% for block in latest_blocks %}
-        <li class='list-group-item'>
-          Block Num: <a href="/block/{{ block.number }}">{{ block.number}}</a>
-          Miner: <a href="/address/{{ block.miner }}">{{ miners[block.miner.lower()] if block.miner.lower() in miners else 'unknown miner'}}</a>
-        </li>
+      <li class='card'>
+        <div class='card-text'>Block Num: <a href="/block/{{ block.number }}">{{ block.number}}</a></div>
+        <div class='card-text'>Miner: <a href="/address/{{ block.miner }}">{{ miners[block.miner.lower()] if block.miner.lower() in miners else 'unknown miner'}}</a></div>
+      </li>
       {% endfor %}
-    </ul>
+      </ul>
     </div>
     <div class='col'>
       <div class='card'>
@@ -36,20 +36,16 @@
           Latest Transactions
         </div>
       </div>
+      <ul class='list-group list-group-flush'>
       {% for transaction in latest_transactions %}
-      <div class='card'>
-        <div class='card-body'>
-          <div class='card-title'>
-            <ul>
-              <li>tx_hash: <a href="/transaction/{{ transaction.hash }}">{{ transaction.hash[:15] }}</a></li>
-              <li>from: <a href="/address/{{ transaction.from }}">{{ transaction.from}}</a></li>
-              <li>to: <a href="/address/{{ transaction.to }}">{{ transaction.to}}</a></li>
-              <li>value (wei): {{ transaction.value}}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <li class='card'>
+        <div>tx_hash: <a href="/transaction/{{ transaction.hash }}">{{ transaction.hash[:15] }}</a></div>
+        <div>from: <a href="/address/{{ transaction.from }}">{{ transaction.from}}</a></div>
+        <div>to: <a href="/address/{{ transaction.to }}">{{ transaction.to}}</a></div>
+        <div>value (wei): {{ transaction.value}}</div>
+      </li>
       {% endfor %}
+      </ul>
     </div>
   </div>
 </div>
