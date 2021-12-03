@@ -1,33 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
 <h3>Block {{ block.number }}</h3>
-<div class='card'>
-  <div class='card-body'>
-    <div class='card-title'>
-    Block Height: {{ block.number }}
-    </div>
-  </div>
-</div>
-<div class='card'>
-  <div class='card-body'>
-    <div class='card-title'>
-    Timestamp: {{ block_time_str }} ({{ days }} days, {{ hours }} hours, {{ minutes }} minutes, {{ seconds }} seconds ago)
-    </div>
-  </div>
-</div>
-<div class='card'>
-  <div class='card-body'>
-    <div class='card-title'>
-    Transactions Count: {{ block.transactions|length }}
-    </div>
-  </div>
-</div>
-<div class='card'>
-  <div class='card-body'>
-    <div class='card-title'>
-    Difficulty: {{ block.difficulty}}
-    </div>
-  </div>
-</div>
-
+<table class='table table-dark table-hover'>
+  <tr>
+    <td>Block Height: </td>
+    <td>{{ block.number }}</td>
+  </tr>
+  <tr>
+    <td>Timestamp: </td>
+    <td>{{ block_time_str }} ({{ days }} days, {{ hours }} hours, {{ minutes }} minutes, {{ seconds }} seconds ago)</td>
+  </tr>
+  <tr>
+    <td>Transactions Count: </td>
+    <td>{{ block.transactions|length }}</td>
+  </tr>
+  <tr>
+    <td>Difficulty: </td>
+    <td>{{ block.difficulty }}</td>
+  </tr>
+</table>
 {% endblock %}

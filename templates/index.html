@@ -39,7 +39,7 @@
       <ul class='list-group list-group-flush'>
       {% for transaction in latest_transactions %}
       <li class='card'>
-        <div>tx_hash: <a href="/transaction/{{ transaction.hash }}">{{ transaction.hash[:15] }}</a></div>
+        <div>tx_hash: <a href="/tx/{{ transaction.hash.hex() }}">{{ transaction.hash[:15].hex() ~ '...' }}</a></div>
         <div>from: <a href="/address/{{ transaction.from }}">{{ transaction.from}}</a></div>
         <div>to: <a href="/address/{{ transaction.to }}">{{ transaction.to}}</a></div>
         <div>value (wei): {{ transaction.value}}</div>
