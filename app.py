@@ -3,9 +3,13 @@ import ccxt
 import time
 from web3 import Web3
 from flask import Flask, render_template
+import json
 
 w3 = Web3(Web3.HTTPProvider(config.INFURA_URL))
 app = Flask(__name__)
+
+with open('miners.json') as f:
+    miners = json.load(f)    
 
 @app.route("/")
 def index():
@@ -25,11 +29,16 @@ def index():
 
     current_time = time.time()
 
+    # print(type(block.miner))
+    # minerlist = list(miners.keys())
+    # print(type(minerlist[0]))
+
     return render_template("index.html", 
                             eth_price=eth_price,
                             latest_blocks=latest_blocks,
                             latest_transactions=latest_transactions,
-                            current_time=current_time)
+                            current_time=current_time,
+                            miners=miners)
 
 @app.route("/tx/<tx_hash>")
 def transaction(tx_hash):
