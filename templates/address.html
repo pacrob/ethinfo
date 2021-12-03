@@ -1,7 +1,27 @@
 {% extends "layout.html" %}
-
 {% block content %}
-address {{ address_hash }}
+<h3>address {{ address_hash }}</h3>
+<div class='card'>
+  <div class='card-body'>
+    <div class='card-title'>
+    Balance: {{ balance_in_eth }} ether
+    </div>
+  </div>
+</div>
+<div class='card'>
+  <div class='card-body'>
+    <div class='card-title'>
+      Value (USD): ${{ total_usd_value }} (@ ${{ eth_price }}/ETH)
+    </div>
+  </div>
+</div>
+<div class='card'>
+  <div class='card-body'>
+    <div class='card-title'>
+      Transaction Count: {{ transaction_count }}
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}

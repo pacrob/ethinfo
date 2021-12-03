@@ -62,7 +62,20 @@ def transaction(tx_hash):
 
 @app.route("/address/<address_hash>")
 def address(address_hash):
-    return render_template("address.html", address_hash=address_hash)
+    balance = w3.eth.getBalance(address_hash)
+    balance_in_eth = float(Web3.fromWei(balance, 'ether'))
+
+    binance = ccxt.binance() 
+    eth_price = (binance.fetch_ticker('ETH/USDC'))['last']
+    total_usd_value = round((balance_in_eth * eth_price), 2)
+
+    transaction_count = w3.eth.get_transaction_count(address_hash)
+
+    return render_template("address.html", address_hash=address_hash,
+                            balance_in_eth=balance_in_eth,
+                            total_usd_value=total_usd_value,
+                            eth_price=eth_price,
+                            transaction_count=transaction_count)
 
 
 @app.route("/block/<block_num>")
